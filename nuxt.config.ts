@@ -19,5 +19,6 @@ export default defineNuxtConfig({
     "@nuxt/scripts",
     "@nuxt/ui",
     "@nuxt/test-utils",
+    "@nuxtjs/supabase",
   ],
 });
