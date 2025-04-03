@@ -1,1 +1,32 @@
-@import "tailwindcss";
+@import "tailwindcss" theme(static);
+@import "@nuxt/ui";
+
+:root {
+  --ui-primary: oklch(62.3% 0.214 259.815);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+div {
+  font-family: "Roboto", sans-serif;
+}
+
+img {
+  object-fit: cover;
+}
+
+canvas {
+  width: 100%;
+  height: 100%;
+}
