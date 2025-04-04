@@ -28,7 +28,14 @@ const handleLogin = async () => {
 </script>
 
 <template>
-  <form class="row flex-center flex" @submit.prevent="handleLogin">
+  <form
+    class="flex flex-col justify-center items-center min-h-screen"
+    @submit.prevent="handleLogin"
+  >
+    <NuxtImg src="/roomie-icon.png" />
+  </form>
+
+  <!-- <form class="row flex-center flex" @submit.prevent="handleLogin">
     <div class="col-6 form-widget">
       <h1 class="header">Supabase + Nuxt 3</h1>
       <p class="description">Sign in via magic link with your email below</p>
@@ -49,5 +56,5 @@ const handleLogin = async () => {
         />
       </div>
     </div>
-  </form>
+  </form> -->
 </template>

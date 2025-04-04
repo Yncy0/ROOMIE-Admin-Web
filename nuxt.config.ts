@@ -12,6 +12,10 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/main.css"],
 
+  image: {
+    inject: true,
+  },
+
   supabase: {
     redirect: false,
   },
