@@ -12,6 +12,10 @@ export default defineNuxtConfig({
 
   css: ["~/assets/css/main.css"],
 
+  supabase: {
+    redirect: false,
+  },
+
   modules: [
     "@nuxt/content",
     "@nuxt/eslint",

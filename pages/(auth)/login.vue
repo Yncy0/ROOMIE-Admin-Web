@@ -1,47 +1,53 @@
-<script setup lang="ts">
-import * as v from "valibot";
-import type { FormSubmitEvent } from "@nuxt/ui";
+<script setup>
+const supabase = useSupabaseClient();
 
-const schema = v.object({
-  email: v.pipe(v.string(), v.email("Invalid email")),
-  password: v.pipe(v.string(), v.minLength(8, "Must be at least 8 characters")),
-});
+const loading = ref(false);
+const email = ref("");
 
-type Schema = v.InferOutput<typeof schema>;
+const handleLogin = async () => {
+  try {
+    loading.value = true;
 
-const state = reactive({
-  email: "",
-  password: "",
-});
+    const { error } = await supabase.auth.signInWithOtp({
+      email: email.value,
+      options: {
+        shouldCreateUser: false,
+        emailRedirectTo: "http://localhost:3000/confirm",
+      },
+    });
 
-const toast = useToast();
-async function onSubmit(event: FormSubmitEvent<Schema>) {
-  toast.add({
-    title: "Success",
-    description: "The form has been submitted.",
-    color: "success",
-  });
-  console.log(event.data);
-}
+    if (error) throw error;
+
+    alert("Check your email for the login link!");
+  } catch (error) {
+    alert(error.error_description || error.message);
+  } finally {
+    loading.value = false;
+  }
+};
 </script>
 
 <template>
-  <UForm
-    :schema="schema"
-    :state="state"
-    class="flex flex-col items-center justify-center gap-7 h-screen"
-    @submit="onSubmit"
-  >
-    <img src="/roomie-icon.png" class="w-36 h-36" />
-
-    <UFormField label="Email" name="email" c>
-      <UInput v-model="state.email" />
-    </UFormField>
-
-    <UFormField label="Password" name="password">
-      <UInput v-model="state.password" type="password" />
-    </UFormField>
-
-    <UButton type="submit"> Submit </UButton>
-  </UForm>
+  <form class="row flex-center flex" @submit.prevent="handleLogin">
+    <div class="col-6 form-widget">
+      <h1 class="header">Supabase + Nuxt 3</h1>
+      <p class="description">Sign in via magic link with your email below</p>
+      <div>
+        <input
+          class="inputField"
+          type="email"
+          placeholder="Your email"
+          v-model="email"
+        />
+      </div>
+      <div>
+        <input
+          type="submit"
+          class="button block"
+          :value="loading ? 'Loading' : 'Send magic link'"
+          :disabled="loading"
+        />
+      </div>
+    </div>
+  </form>
 </template>
