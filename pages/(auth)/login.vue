@@ -29,10 +29,16 @@ const handleLogin = async () => {
 
 <template>
   <form
-    class="flex flex-col justify-center items-center min-h-screen"
+    class="flex flex-col justify-center items-center min-h-screen gap-8"
     @submit.prevent="handleLogin"
   >
-    <NuxtImg src="/roomie-icon.png" />
+    <NuxtImg src="/roomie-icon.png" class="w-44 h-44" />
+
+    <UFormField label="Email">
+      <UInput placeholder="Enter your email" class="w-2xs" />
+    </UFormField>
+
+    <UButton class="text-white w-36">Login</UButton>
   </form>
 
   <!-- <form class="row flex-center flex" @submit.prevent="handleLogin">
@@ -49,7 +55,7 @@ const handleLogin = async () => {
       </div>
       <div>
         <input
-          type="submit"
+          type="submit" 
           class="button block"
           :value="loading ? 'Loading' : 'Send magic link'"
           :disabled="loading"

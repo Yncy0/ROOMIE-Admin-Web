@@ -1,13 +1,8 @@
 <script setup>
 const supabase = useSupabaseClient();
-const session = useSupabaseSession();
+const user = useSupabaseUser();
 
 const loading = ref(true);
-
-if (!session.value) {
-  console.log("No session!");
-  navigateTo("/login");
-}
 
 async function handleSignOut() {
   try {
@@ -21,6 +16,12 @@ async function handleSignOut() {
     loading.value = false;
   }
 }
+
+watchEffect(() => {
+  if (!user.value) {
+    return navigateTo("/login");
+  }
+});
 </script>
 
 <template>
