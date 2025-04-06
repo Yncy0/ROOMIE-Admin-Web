@@ -10,6 +10,16 @@ export default defineNuxtConfig({
     plugins: [tailwindcss()],
   },
 
+  css: ["~/assets/css/main.css"],
+
+  image: {
+    inject: true,
+  },
+
+  supabase: {
+    redirect: false,
+  },
+
   modules: [
     "@nuxt/content",
     "@nuxt/eslint",
