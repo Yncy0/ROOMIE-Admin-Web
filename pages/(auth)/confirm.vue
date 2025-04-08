@@ -23,8 +23,6 @@ watch(
   () => {
     if (user.value) {
       return navigateTo("/");
-    } else {
-      return navigateTo("");
     }
   },
   { immediate: true }
