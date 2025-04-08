@@ -1,6 +1,12 @@
 <script setup>
+import auth from "~/middleware/auth";
+
+definePageMeta({
+  middleware: auth,
+});
+
 const supabase = useSupabaseClient();
-const user = useSupabaseUser();
+// const user = useSupabaseUser();
 
 const loading = ref(true);
 
@@ -17,11 +23,11 @@ async function handleSignOut() {
   }
 }
 
-watchEffect(() => {
-  if (!user.value) {
-    return navigateTo("/login");
-  }
-});
+// watchEffect(() => {
+//   if (!user.value) {
+//     return navigateTo("/login");
+//   }
+// });
 </script>
 
 <template>
