@@ -5,27 +5,14 @@ definePageMeta({
 
 const user = useSupabaseUser();
 
-// const time = ref(60);
-
-// onMounted(() => {
-//   function countDown() {
-//     const timeOut = setInterval(() => {
-//       time.value--;
-
-//       if (time.value <= 0) {
-//         clearInterval(timeOut);
-//         navigateTo("/login");
-//       }
-//     }, 1000);
-//   }
-
-//   countDown();
-// });
-
 watch(
   user,
   () => {
-    if (user.value) return navigateTo("/");
+    if (!user.value) {
+      return navigateTo("/login");
+    } else {
+      return navigateTo("/");
+    }
   },
   { immediate: true }
 );
