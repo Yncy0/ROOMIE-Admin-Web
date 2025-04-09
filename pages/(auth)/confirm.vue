@@ -1,30 +1,20 @@
 <script setup lang="ts">
-const user = useSupabaseUser();
-
-const time = ref(60);
-
-onMounted(() => {
-  function countDown() {
-    const timeOut = setInterval(() => {
-      time.value--;
-
-      if (time.value <= 0) {
-        clearInterval(timeOut);
-        navigateTo("/login");
-      }
-    }, 1000);
-  }
-
-  countDown();
+definePageMeta({
+  middleware: ["auth"],
 });
+
+const user = useSupabaseUser();
+const redirectInfo = useSupabaseCookieRedirect();
 
 watch(
   user,
   () => {
-    if (user.value) {
-      return navigateTo("/");
+    if (!user.value) {
+      return navigateTo("/login");
     } else {
-      return navigateTo("");
+      const path = redirectInfo.pluck();
+
+      return navigateTo(path || "/");
     }
   },
   { immediate: true }
@@ -33,6 +23,6 @@ watch(
 
 <template>
   <div class="w-screen h-screen flex items-center justify-center">
-    <span>Waiting for login... {{ time }}</span>
+    <span>Waiting for login...</span>
   </div>
 </template>

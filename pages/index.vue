@@ -1,27 +1,25 @@
 <script setup>
+definePageMeta({
+  middleware: ["auth"],
+});
+
 const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 
-const loading = ref(true);
+watch(
+  user,
+  () => {
+    if (!user.value) return navigateTo("/login");
+  },
+  { immediate: true }
+);
 
 async function handleSignOut() {
-  try {
-    loading.value = true;
+  const { error } = await supabase.auth.signOut();
+  if (error) throw error;
 
-    const { error } = await supabase.auth.signOut();
-    if (error) throw error;
-  } catch (e) {
-    alert(e.error_description || e.message);
-  } finally {
-    loading.value = false;
-  }
+  navigateTo("/login", { replace: true });
 }
-
-watchEffect(() => {
-  if (!user.value) {
-    return navigateTo("/login");
-  }
-});
 </script>
 
 <template>
