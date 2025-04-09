@@ -4,6 +4,7 @@ definePageMeta({
 });
 
 const user = useSupabaseUser();
+const redirectInfo = useSupabaseCookieRedirect();
 
 watch(
   user,
@@ -11,7 +12,9 @@ watch(
     if (!user.value) {
       return navigateTo("/login");
     } else {
-      return navigateTo("/");
+      const path = redirectInfo.pluck();
+
+      return navigateTo(path || "/");
     }
   },
   { immediate: true }
