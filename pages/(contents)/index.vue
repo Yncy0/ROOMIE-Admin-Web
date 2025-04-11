@@ -3,7 +3,6 @@ definePageMeta({
   middleware: ["auth"],
 });
 
-const supabase = useSupabaseClient();
 const user = useSupabaseUser();
 
 watch(
@@ -13,18 +12,10 @@ watch(
   },
   { immediate: true }
 );
-
-async function handleSignOut() {
-  const { error } = await supabase.auth.signOut();
-  if (error) throw error;
-
-  navigateTo("/login", { replace: true });
-}
 </script>
 
 <template>
   <div>
     <h1>Index</h1>
-    <UButton @click="handleSignOut">Sign Out</UButton>
   </div>
 </template>

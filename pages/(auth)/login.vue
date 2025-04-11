@@ -1,4 +1,8 @@
 <script setup>
+definePageMeta({
+  layout: "login",
+});
+
 const supabase = useSupabaseClient();
 
 const loading = ref(false);
