@@ -20,9 +20,9 @@ const items = ref<NavigationMenuItem>([
       to: "/users",
     },
     {
-      label: "Building",
+      label: "Buildings",
       icon: "i-lucide-building-2",
-      to: "/building",
+      to: "/buildings",
     },
     {
       label: "Rooms",
