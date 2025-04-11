@@ -2,39 +2,55 @@
 import type { NavigationMenuItem } from "@nuxt/ui";
 
 const items = ref<NavigationMenuItem>([
-  { label: "Roomie", type: "label" },
-  {
-    label: "Home",
-    icon: "i-lucide-house",
-  },
-  {
-    label: "Booked Rooms",
-    icon: "i-lucide-book",
-  },
-  {
-    label: "Users",
-    icon: "i-lucide-users",
-  },
-  {
-    label: "Building",
-    icon: "i-lucide-building-2",
-  },
-  {
-    label: "Rooms",
-    icon: "i-lucide-grip",
-  },
-  {
-    label: "Schedule",
-    icon: "i-lucide-calendar-days",
-  },
-  {
-    label: "Activity Logs",
-    icon: "i-lucide-logs",
-  },
-  {
-    label: "Archive",
-    icon: "i-lucide-archive",
-  },
+  [
+    { label: "Roomie", type: "label" },
+    {
+      label: "Home",
+      icon: "i-lucide-house",
+      to: "/",
+    },
+    {
+      label: "Booked Rooms",
+      icon: "i-lucide-book",
+      to: "/booked-rooms",
+    },
+    {
+      label: "Users",
+      icon: "i-lucide-users",
+      to: "/users",
+    },
+    {
+      label: "Building",
+      icon: "i-lucide-building-2",
+      to: "/building",
+    },
+    {
+      label: "Rooms",
+      icon: "i-lucide-grip",
+      to: "/rooms",
+    },
+    {
+      label: "Schedule",
+      icon: "i-lucide-calendar-days",
+      to: "/schedule",
+    },
+    {
+      label: "Activity Logs",
+      icon: "i-lucide-logs",
+      to: "/activity-logs",
+    },
+    {
+      label: "Archive",
+      icon: "i-lucide-archive",
+      to: "/archive",
+    },
+  ],
+  [
+    {
+      label: "Logout",
+      icon: "i-lucide-log-out",
+    },
+  ],
 ]);
 </script>
 
@@ -42,6 +58,6 @@ const items = ref<NavigationMenuItem>([
   <UNavigationMenu
     orientation="vertical"
     :items="items"
-    class="data-[orientation=vertical]:w-48"
+    class="data-[orientation=vertical]:w-48 h-screen"
   />
 </template>
