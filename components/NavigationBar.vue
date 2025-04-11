@@ -4,8 +4,8 @@ import type { NavigationMenuItem } from "@nuxt/ui";
 const items = ref<NavigationMenuItem>([
   { label: "Roomie", type: "label" },
   {
-    label: "Dashboard",
-    icon: "i-lucide-layout-dashboard",
+    label: "Home",
+    icon: "i-lucide-house",
   },
   {
     label: "Booked Rooms",
